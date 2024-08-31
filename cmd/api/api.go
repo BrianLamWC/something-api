@@ -37,7 +37,7 @@ func (s *APIServer) Run() error {
 
 	// Configure CORS
 	corsOptions := handlers.CORS(
-		handlers.AllowedOrigins([]string{"http://localhost:5173"}), // Replace with your frontend's address
+		handlers.AllowedOrigins([]string{"http://localhost:5173", "https://something-dsf5tlrk1-brianlamwcs-projects.vercel.app"}), // Replace with your frontend's address
 		handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}),
 		handlers.AllowedHeaders([]string{"Content-Type", "Authorization"}),
 		handlers.AllowCredentials(),
