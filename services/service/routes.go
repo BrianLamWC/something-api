@@ -21,7 +21,9 @@ func NewHandler(store types.ServiceStore, userStore types.UserStore) *Handler {
 
 func (h *Handler) RegisterRoutes(router *mux.Router) {
 	router.HandleFunc("/services", auth.WithJWTAuth(h.getServices, h.userStore)).Methods("GET")
-	router.PathPrefix("/images").Handler(http.StripPrefix("/api/v1/images", http.FileServer(http.Dir("./services/serviceImages"))))
+	router.PathPrefix("/images/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {http.ServeFile(w, r, "./services/serviceImages/placeholder.jpg")})
+
+
 }
 
 func (h *Handler) getServices(w http.ResponseWriter, r *http.Request){
