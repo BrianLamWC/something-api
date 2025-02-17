@@ -30,6 +30,9 @@ func (h *Handler) RegisterRoutes(router *mux.Router) {
 	router.HandleFunc("/refreshToken", h.handleRefreshToken).Methods("GET")
 	router.HandleFunc("/signout", h.handleSignout).Methods("GET")
 	router.HandleFunc("/otp", auth.WithJWTAuth(h.handleOTP, h.store)).Methods("POST")
+	router.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("pong"))
+	}).Methods("GET")
 }
 
 func (h *Handler) handleSignin(w http.ResponseWriter, r *http.Request){
